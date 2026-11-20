@@ -1,15 +1,19 @@
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import {
+  ClipboardList, Factory, Layers, LayoutDashboard, LogOut,
+  Package, Receipt, ShoppingCart, Truck, Users,
+} from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
 const MENU = [
-  { to: "/", label: "Dashboard" },
-  { to: "/customers", label: "Customers" },
-  { to: "/vendors", label: "Vendors" },
-  { to: "/products", label: "Products" },
-  { to: "/orders", label: "Sales Orders" },
-  { to: "/boms", label: "BOM" },
-  { to: "/purchase", label: "Purchase Orders" },
-  { to: "/invoices", label: "Invoices" },
+  { to: "/app", label: "Dashboard", icon: LayoutDashboard },
+  { to: "/app/customers", label: "Customers", icon: Users },
+  { to: "/app/vendors", label: "Vendors", icon: Truck },
+  { to: "/app/products", label: "Products", icon: Package },
+  { to: "/app/orders", label: "Sales Orders", icon: ClipboardList },
+  { to: "/app/boms", label: "BOM", icon: Layers },
+  { to: "/app/purchase", label: "Purchase Orders", icon: ShoppingCart },
+  { to: "/app/invoices", label: "Invoices", icon: Receipt },
 ];
 
 export default function Layout() {
@@ -18,25 +22,34 @@ export default function Layout() {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/");
   };
 
   return (
     <div className="app">
       <aside className="sidebar">
-        <h2>OrderCraft</h2>
-        {MENU.map((m) => (
-          <NavLink key={m.to} to={m.to} end={m.to === "/"}>
-            {m.label}
-          </NavLink>
-        ))}
+        <div className="brand light"><Factory size={22} /> OrderCraft</div>
+        <nav>
+          {MENU.map(({ to, label, icon: Icon }) => (
+            <NavLink key={to} to={to} end={to === "/app"}>
+              <Icon size={18} /> {label}
+            </NavLink>
+          ))}
+        </nav>
       </aside>
+
       <div className="main">
         <header className="topbar">
-          <span>
-            {user.username} <span className="badge">{user.role}</span>
-          </span>
-          <button onClick={handleLogout}>Logout</button>
+          <div className="user">
+            <div className="avatar">{user.username[0].toUpperCase()}</div>
+            <div>
+              <strong>{user.username}</strong>
+              <span className="badge">{user.role}</span>
+            </div>
+          </div>
+          <button className="btn ghost" onClick={handleLogout}>
+            <LogOut size={16} /> Logout
+          </button>
         </header>
         <div className="content">
           <Outlet />

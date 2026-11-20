@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
-import { errText } from "../components/CrudPage";
+import { errText } from "../utils/errText";
 
 const money = (n) => "₹" + Number(n || 0).toLocaleString("en-IN");
 
