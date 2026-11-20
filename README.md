@@ -108,3 +108,11 @@ All roles can view data.
 ## Author
 
 Your Name | FSD Python
+
+
+## Screenshots
+
+![Home](docs/screenshots/home.png)
+![Dashboard](docs/screenshots/dashboard.png)
+![Orders](docs/screenshots/orders.png)
+![BOM](docs/screenshots/bom.png)

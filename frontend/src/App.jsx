@@ -9,6 +9,9 @@ import Customers from "./pages/Customers";
 import Vendors from "./pages/Vendors";
 import Products from "./pages/Products";
 import Orders from "./pages/Orders";
+import Boms from "./pages/Boms";
+import PurchaseOrders from "./pages/PurchaseOrders";
+import Invoices from "./pages/Invoices";
 
 const Soon = ({ name }) => <h2>{name} (coming next)</h2>;
 
@@ -36,6 +39,9 @@ export default function App() {
             <Route path="purchase" element={<Soon name="Purchase Orders" />} />
             <Route path="invoices" element={<Soon name="Invoices" />} />
           </Route>
+          <Route path="boms" element={<Boms />} />
+<Route path="purchase" element={<PurchaseOrders />} />
+<Route path="invoices" element={<Invoices />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
