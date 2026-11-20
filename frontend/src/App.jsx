@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Customers from "./pages/Customers";
 import Vendors from "./pages/Vendors";
 import Products from "./pages/Products";
+import Orders from "./pages/Orders";
 
 const Soon = ({ name }) => <h2>{name} (coming next)</h2>;
 
@@ -37,6 +38,7 @@ export default function App() {
           <Route path="customers" element={<Customers />} />
 <Route path="vendors" element={<Vendors />} />
 <Route path="products" element={<Products />} />
+<Route path="orders" element={<Orders />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
