@@ -3,15 +3,9 @@ import {
   ArrowRight, BarChart3, Boxes, ClipboardList, Factory,
   FileText, ShieldCheck, ShoppingCart,
 } from "lucide-react";
+import { FEATURES } from "../data/features";
 
-const FEATURES = [
-  { icon: ClipboardList, title: "Sales Orders", text: "Create orders with multiple items and track every status from draft to dispatch." },
-  { icon: Boxes, title: "Automatic BOM", text: "Material list is generated from product recipes, with live shortage calculation." },
-  { icon: ShoppingCart, title: "Purchase Orders", text: "Vendor-wise purchase orders from shortages, with goods receipt and stock update." },
-  { icon: FileText, title: "Invoicing & Payments", text: "GST invoices, partial payments and instant outstanding balance." },
-  { icon: ShieldCheck, title: "Role-Based Access", text: "Admin, Sales, Purchase and Accounts see and do only what they should." },
-  { icon: BarChart3, title: "Reports & Analytics", text: "Dashboard with sales, outstanding payments and pending purchase orders." },
-];
+const ICONS = { BarChart3, Boxes, ClipboardList, FileText, ShieldCheck, ShoppingCart };
 
 const STEPS = [
   "Sales Order", "BOM", "Purchase Order", "Goods Received",
@@ -24,7 +18,7 @@ export default function Home() {
   return (
     <div className="home">
       <nav className="home-nav">
-        <div className="brand"><Factory size={22} /> OrderCraft</div>
+        <Link to="/" className="brand"><Factory size={22} /> OrderCraft</Link>
         <div className="nav-links">
           <a href="#features">Features</a>
           <a href="#workflow">Workflow</a>
@@ -65,15 +59,19 @@ export default function Home() {
 
       <section id="features" className="section">
         <h2>Everything your order cycle needs</h2>
-        <p className="sub">Six modules, one connected system.</p>
+        <p className="sub">Six modules, one connected system. Click a card for details.</p>
         <div className="feature-grid">
-          {FEATURES.map(({ icon: Icon, title, text }) => (
-            <div className="feature" key={title}>
-              <div className="icon"><Icon size={22} /></div>
-              <h3>{title}</h3>
-              <p>{text}</p>
-            </div>
-          ))}
+          {FEATURES.map((f) => {
+            const Icon = ICONS[f.icon];
+            return (
+              <Link to={`/features/${f.slug}`} className="feature" key={f.slug}>
+                <div className="icon"><Icon size={22} /></div>
+                <h3>{f.title}</h3>
+                <p>{f.summary}</p>
+                <span className="more">View details <ArrowRight size={14} /></span>
+              </Link>
+            );
+          })}
         </div>
       </section>
 

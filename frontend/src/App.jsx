@@ -12,6 +12,7 @@ import Orders from "./pages/Orders";
 import Boms from "./pages/Boms";
 import PurchaseOrders from "./pages/PurchaseOrders";
 import Invoices from "./pages/Invoices";
+import FeatureDetail from "./pages/FeatureDetail";
 
 const Soon = ({ name }) => <h2>{name} (coming next)</h2>;
 
@@ -42,6 +43,7 @@ export default function App() {
           <Route path="boms" element={<Boms />} />
 <Route path="purchase" element={<PurchaseOrders />} />
 <Route path="invoices" element={<Invoices />} />
+<Route path="/features/:slug" element={<FeatureDetail />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
